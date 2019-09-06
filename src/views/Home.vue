@@ -1,18 +1,33 @@
+<!--
+ * @文件描述: 
+ * @公司: thundersdata
+ * @作者: 黄建停
+ * @Date: 2019-09-04 15:24:25
+ * @LastEditors: 黄建停
+ * @LastEditTime: 2019-09-06 10:37:35
+ -->
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div>
+    <ol v-for="(i, index) in 5" :key="index">
+      <li>item</li>
+    </ol>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
+import { mapActions, mapGetters } from "vuex";
 export default {
-  name: "home",
-  components: {
-    HelloWorld
+  data() {
+    return {};
+  },
+  computed: {
+    ...mapGetters("home", ["routeDistributeOption"])
+  },
+  methods: {
+    ...mapActions("home", ["fetchGetRouteDistribute"])
+  },
+  mounted() {
+    this.fetchGetRouteDistribute({ type: 0 });
   }
 };
 </script>
