@@ -4,7 +4,7 @@
  * @作者: 黄建停
  * @Date: 2019-09-04 15:24:25
  * @LastEditors: 黄建停
- * @LastEditTime: 2019-09-06 14:21:07
+ * @LastEditTime: 2019-09-07 17:23:48
  -->
 <template>
   <div id="app">
@@ -35,6 +35,7 @@
         </el-submenu>
         <el-menu-item index="/">
           <i class="el-icon-menu"></i>
+          <!-- <Icon type="dituzhaocang" :size="30" color="#f00"></Icon> -->
           <span slot="title">导航二</span>
         </el-menu-item>
         <el-menu-item index="/about">
@@ -52,18 +53,22 @@
 </template>
 <script>
 import "./App.less";
+// import Icon from "@/components/icon";
 export default {
+  components: {
+    // Icon
+  },
   data() {
     return {
       activeIndex: "/"
     };
   },
   methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
+    handleOpen() {
+      // console.log(key, keyPath);
     },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
+    handleClose() {
+      // console.log(key, keyPath);
     },
     handleSelect(key, keyPath) {
       this.activeIndex = keyPath;
