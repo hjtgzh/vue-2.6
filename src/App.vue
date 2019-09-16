@@ -4,7 +4,7 @@
  * @作者: 黄建停
  * @Date: 2019-09-04 15:24:25
  * @LastEditors: 黄建停
- * @LastEditTime: 2019-09-07 17:23:48
+ * @LastEditTime: 2019-09-11 14:12:19
  -->
 <template>
   <div id="app">
@@ -20,47 +20,56 @@
         active-text-color="#ffd04b"
         router
       >
-        <el-submenu index="1">
-          <template slot="title">
-            <i class="el-icon-location"></i>
-            <span>导航一</span>
+        <template v-for="item in menuList">
+          <template v-if="item.child">
+            <el-submenu :index="item.index" :key="item.name">
+              <template slot="title">
+                <i :class="item.icon"></i>
+                <span>{{ item.name }}</span>
+              </template>
+              <template v-for="childItem in item.child">
+                <el-menu-item :index="childItem.index" :key="childItem.name">
+                  {{ childItem.name }}
+                </el-menu-item>
+              </template>
+            </el-submenu>
           </template>
-          <el-menu-item-group title="分组一">
-            <el-menu-item index="1-1">选项1</el-menu-item>
-            <el-menu-item index="1-2">选项2</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group title="分组2">
-            <el-menu-item index="1-3">选项3</el-menu-item>
-          </el-menu-item-group>
-        </el-submenu>
-        <el-menu-item index="/">
-          <i class="el-icon-menu"></i>
-          <!-- <Icon type="dituzhaocang" :size="30" color="#f00"></Icon> -->
-          <span slot="title">导航二</span>
-        </el-menu-item>
-        <el-menu-item index="/about">
-          <i class="el-icon-document"></i>
-          <span slot="title">导航三</span>
-        </el-menu-item>
-        <el-menu-item index="4">
-          <i class="el-icon-setting"></i>
-          <span slot="title">导航四</span>
-        </el-menu-item>
+          <template v-else>
+            <el-menu-item :index="item.index" :key="item.name">
+              <i :class="item.icon"></i>
+              <span slot="title">{{ item.name }}</span>
+            </el-menu-item>
+          </template>
+        </template>
       </el-menu>
     </div>
-    <router-view />
+    <div class="container">
+      <div class="common-header">
+        <div class="title">
+          <Icon type="zhedie" :size="16" />
+          <span>后台系统</span>
+        </div>
+        <div class="handle-bt">
+          <span>欢迎您</span>
+          <span>登出</span>
+        </div>
+      </div>
+      <div class="content-wrap"><router-view /></div>
+    </div>
   </div>
 </template>
 <script>
 import "./App.less";
-// import Icon from "@/components/icon";
+import Icon from "@/components/icon";
+import { menuList } from "./constant";
 export default {
   components: {
-    // Icon
+    Icon
   },
   data() {
     return {
-      activeIndex: "/"
+      activeIndex: "/",
+      menuList
     };
   },
   methods: {
@@ -73,6 +82,22 @@ export default {
     handleSelect(key, keyPath) {
       this.activeIndex = keyPath;
     }
+  },
+  created() {
+    //在页面加载时读取sessionStorage里的状态信息
+    if (sessionStorage.getItem("store")) {
+      this.$store.replaceState(
+        Object.assign(
+          {},
+          this.$store.state,
+          JSON.parse(sessionStorage.getItem("store"))
+        )
+      );
+    }
+    //在页面刷新时将vuex里的信息保存到sessionStorage里
+    window.addEventListener("beforeunload", () => {
+      sessionStorage.setItem("store", JSON.stringify(this.$store.state));
+    });
   }
 };
 </script>

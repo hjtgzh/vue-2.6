@@ -1,10 +1,10 @@
 <!--
- * @文件描述: icon文件
+ * @文件描述: icon组件
  * @公司: thundersdata
  * @作者: 黄建停
  * @Date: 2019-09-06 16:16:07
  * @LastEditors: 黄建停
- * @LastEditTime: 2019-09-07 17:19:25
+ * @LastEditTime: 2019-09-10 14:52:55
  -->
 <template>
   <i :class="`iconfont icon-${type}`" :style="styles"></i>
