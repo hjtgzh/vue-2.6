@@ -2,27 +2,27 @@ import { Message } from "element-ui";
 
 export const menuList = [
   {
-    name: "导航一",
+    name: "导航-父级",
     icon: "el-icon-location",
     index: "0",
     child: [
       {
-        name: "选项1",
-        index: "1"
+        name: "导航-子级1",
+        index: "/child"
       },
       {
-        name: "选项2",
+        name: "导航-子级2",
         index: "2"
       }
     ]
   },
   {
-    name: "导航二",
+    name: "导航-home",
     index: "/",
     icon: "el-icon-menu"
   },
   {
-    name: "导航三",
+    name: "导航-about",
     index: "/about",
     icon: "el-icon-document"
   },

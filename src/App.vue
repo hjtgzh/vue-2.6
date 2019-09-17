@@ -4,12 +4,14 @@
  * @作者: 黄建停
  * @Date: 2019-09-04 15:24:25
  * @LastEditors: 黄建停
- * @LastEditTime: 2019-09-16 16:08:54
+ * @LastEditTime: 2019-09-17 20:45:52
  -->
 <template>
   <el-container class="app">
     <el-aside class="nav-side">
       <el-menu
+        router
+        unique-opened
         :default-active="$route.path"
         class="el-menu"
         @open="handleOpen"
@@ -18,7 +20,6 @@
         background-color="#545c64"
         text-color="#fff"
         active-text-color="#ffd04b"
-        router
       >
         <template v-for="item in menuList">
           <template v-if="item.child">
@@ -84,6 +85,8 @@ export default {
       // console.log(key, keyPath);
     },
     handleSelect(key, keyPath) {
+      // console.log("key", key);
+      // console.log("keyPath", keyPath);
       this.activeIndex = keyPath;
     }
   },
