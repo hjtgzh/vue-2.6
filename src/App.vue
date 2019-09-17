@@ -4,11 +4,11 @@
  * @作者: 黄建停
  * @Date: 2019-09-04 15:24:25
  * @LastEditors: 黄建停
- * @LastEditTime: 2019-09-11 14:12:19
+ * @LastEditTime: 2019-09-16 16:08:54
  -->
 <template>
-  <div id="app">
-    <div class="nav-side">
+  <el-container class="app">
+    <el-aside class="nav-side">
       <el-menu
         :default-active="$route.path"
         class="el-menu"
@@ -42,21 +42,25 @@
           </template>
         </template>
       </el-menu>
-    </div>
-    <div class="container">
-      <div class="common-header">
-        <div class="title">
-          <Icon type="zhedie" :size="16" />
-          <span>后台系统</span>
+    </el-aside>
+    <el-container>
+      <el-header>
+        <div class="common-header">
+          <div class="title">
+            <Icon type="zhedie" :size="16" />
+            <span>后台系统</span>
+          </div>
+          <div class="handle-bt">
+            <span>欢迎您</span>
+            <span>登出</span>
+          </div>
         </div>
-        <div class="handle-bt">
-          <span>欢迎您</span>
-          <span>登出</span>
-        </div>
-      </div>
-      <div class="content-wrap"><router-view /></div>
-    </div>
-  </div>
+      </el-header>
+      <el-main>
+        <div class="content-wrap"><router-view /></div>
+      </el-main>
+    </el-container>
+  </el-container>
 </template>
 <script>
 import "./App.less";

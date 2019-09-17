@@ -4,12 +4,12 @@
  * @作者: 黄建停
  * @Date: 2019-09-04 15:24:25
  * @LastEditors: 黄建停
- * @LastEditTime: 2019-09-11 14:02:55
+ * @LastEditTime: 2019-09-17 16:08:35
  -->
 <template>
   <div class="table">
-    <el-table :data="warehouseList" style="width: 100%">
-      <el-table-column label="标题">
+    <el-table :data="warehouseData.list" style="width: 100%">
+      <el-table-column label="标题" width="330">
         <template slot-scope="scope">
           <i class="el-icon-time"></i>
           <span style="margin-left: 10px">{{ scope.row.name }}</span>
@@ -26,7 +26,7 @@
           </el-popover>
         </template>
       </el-table-column>
-      <el-table-column label="地址">
+      <el-table-column label="地址" width="450">
         <template slot-scope="scope">
           <i class="el-icon-time"></i>
           <span style="margin-left: 10px">{{ scope.row.address }}</span>
@@ -46,29 +46,41 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-pagination background layout="prev, pager, next" :total="1000">
+    <el-pagination
+      background
+      layout="prev, pager, next"
+      :current-page="warehouseData.page"
+      :total="warehouseData.total"
+      @current-change="handleCurrentChange"
+    >
     </el-pagination>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters, mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 export default {
   data() {
-    return {
-      // getWarehouseList:getWarehouseList
-    };
+    return {};
   },
   computed: {
-    ...mapGetters("home", ["getWarehouseList"]),
-    ...mapState("home", ["warehouseList"])
+    // ...mapGetters("home", ["getWarehouseList"]),
+    ...mapState("home", ["warehouseData"])
   },
   methods: {
-    ...mapActions("home", ["fetchWarehouseList"])
+    ...mapActions("home", ["fetchWarehouseData"]),
+    handleCurrentChange(page) {
+      this.fetchWarehouseData({
+        locationCity: 110100,
+        page,
+        pageSize: 10
+      });
+    }
   },
   created() {
-    this.fetchWarehouseList({
-      locationCity: 110100
+    this.fetchWarehouseData({
+      locationCity: 110100,
+      pageSize: 10
     });
   }
 };

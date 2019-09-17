@@ -1,3 +1,5 @@
+import { Message } from "element-ui";
+
 export const menuList = [
   {
     name: "导航一",
@@ -30,3 +32,18 @@ export const menuList = [
     icon: "el-icon-setting"
   }
 ];
+
+export const message = {
+  success: msg => {
+    Message.success({
+      message: msg || "成功",
+      duration: 2000
+    });
+  },
+  error: msg => {
+    Message.error({
+      message: msg || "失败",
+      duration: 2000
+    });
+  }
+};

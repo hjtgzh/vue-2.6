@@ -4,7 +4,7 @@
  * @作者: 黄建停
  * @Date: 2019-09-04 15:24:25
  * @LastEditors: 黄建停
- * @LastEditTime: 2019-09-11 13:38:59
+ * @LastEditTime: 2019-09-17 16:09:35
  -->
 <template>
   <el-form :inline="true" :model="formInline" class="demo-form-inline">
@@ -15,13 +15,14 @@
         range-separator="至"
         start-placeholder="开始日期"
         end-placeholder="结束日期"
+        clearable
       >
       </el-date-picker>
     </el-form-item>
     <el-form-item label="活动区域">
-      <el-select v-model="formInline.region" placeholder="活动区域">
-        <el-option label="区域一" value="shanghai"></el-option>
-        <el-option label="区域二" value="beijing"></el-option>
+      <el-select v-model="formInline.region" placeholder="活动区域" clearable>
+        <el-option label="上海" value="shanghai"></el-option>
+        <el-option label="北京" value="beijing"></el-option>
       </el-select>
     </el-form-item>
     <el-form-item>
@@ -31,7 +32,7 @@
 </template>
 
 <script>
-// import { mapActions, mapGetters } from "vuex";
+// import { mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -41,11 +42,8 @@ export default {
       }
     };
   },
-  computed: {
-    // ...mapGetters("home", ["routeDistributeOption"])
-  },
   methods: {
-    // ...mapActions("home", ["fetchGetRouteDistribute"]),
+    // ...mapActions("home", ["fetchWarehouseData"]),
     onSubmit() {
       // console.log("value", this.formInline);
       // this.fetchGetRouteDistribute({ type: 0 });
