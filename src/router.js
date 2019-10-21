@@ -3,6 +3,7 @@ import Router from "vue-router";
 import Home from "./views/home";
 // import About from "./views/about";
 import Child from "./views/child";
+import Other from "./views/other";
 
 Vue.use(Router);
 
@@ -20,6 +21,11 @@ export default new Router({
       name: "about",
       component: () =>
         import(/* webpackChunkName: "about" */ "./views/about/index.vue")
+    },
+    {
+      path: "/other",
+      name: "other",
+      component: Other
     },
     {
       path: "/child",

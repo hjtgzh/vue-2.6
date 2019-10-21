@@ -27,8 +27,8 @@ export const menuList = [
     icon: "el-icon-document"
   },
   {
-    name: "导航四",
-    index: "3",
+    name: "导航-other",
+    index: "/other",
     icon: "el-icon-setting"
   }
 ];
