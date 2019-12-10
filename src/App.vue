@@ -4,16 +4,16 @@
  * @作者: 黄建停
  * @Date: 2019-09-04 15:24:25
  * @LastEditors: 黄建停
- * @LastEditTime: 2019-09-17 20:45:52
+ * @LastEditTime: 2019-12-10 19:38:48
  -->
 <template>
-  <el-container class="app">
-    <el-aside class="nav-side">
+  <el-container :class="styles.app">
+    <el-aside :class="styles.navSide">
       <el-menu
         router
         unique-opened
         :default-active="$route.path"
-        class="el-menu"
+        :class="styles.elMenu"
         @open="handleOpen"
         @close="handleClose"
         @select="handleSelect"
@@ -46,33 +46,34 @@
     </el-aside>
     <el-container>
       <el-header>
-        <div class="common-header">
-          <div class="title">
+        <div :class="styles.commonHeader">
+          <div :class="styles.title">
             <Icon type="zhedie" :size="16" />
             <span>后台系统</span>
           </div>
-          <div class="handle-bt">
+          <div :class="styles.handleBt">
             <span>欢迎您</span>
             <span>登出</span>
           </div>
         </div>
       </el-header>
       <el-main>
-        <div class="content-wrap"><router-view /></div>
+        <div :class="styles.contentWrap"><router-view /></div>
       </el-main>
     </el-container>
   </el-container>
 </template>
 <script>
-import "./App.less";
 import Icon from "@/components/icon";
 import { menuList } from "./constant";
+import styles from "./App.module.less";
 export default {
   components: {
     Icon
   },
   data() {
     return {
+      styles,
       activeIndex: "/",
       menuList
     };
