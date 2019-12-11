@@ -8,7 +8,23 @@
 //边框颜色
 @border-color: #d7d7d7;
 
+@primary: #2ea6ee;
+@success: #0fb886;
+@warning: #f97e12;
+@danger: #df4646;
+
+@black: #333;
+@gray: #666;
+@gray-light: #999;
+@tips: #ccc;
+
 // 边框
 .border(@width: 1px, @style: 'solid', @color: @border-color) {
   border: @width @style @color;
+}
+
+@basePixel: 16;
+
+.rem(@name, @px) {
+  @{name}: unit(@px / @basePixel, rem);
 }

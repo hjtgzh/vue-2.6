@@ -4,8 +4,11 @@ import router from "./router";
 import store from "./store/index";
 import "../config/uiConfig";
 import "./assets/font/iconfont.css";
+import services from "./services";
 
 Vue.config.productionTip = false;
+
+Vue.prototype.$services = services;
 
 new Vue({
   router,

@@ -4,10 +4,10 @@
  * @作者: 黄建停
  * @Date: 2019-09-04 15:24:25
  * @LastEditors: 黄建停
- * @LastEditTime: 2019-12-10 19:38:48
+ * @LastEditTime: 2019-12-11 15:51:13
  -->
 <template>
-  <el-container :class="styles.app">
+  <el-container :class="styles.app" v-if="user.isLogin()">
     <el-aside :class="styles.navSide">
       <el-menu
         router
@@ -53,7 +53,7 @@
           </div>
           <div :class="styles.handleBt">
             <span>欢迎您</span>
-            <span>登出</span>
+            <span @click="logout">登出</span>
           </div>
         </div>
       </el-header>
@@ -62,10 +62,12 @@
       </el-main>
     </el-container>
   </el-container>
+  <router-view v-else />
 </template>
 <script>
 import Icon from "@/components/icon";
 import { menuList } from "./constant";
+import user from "./utils/user";
 import styles from "./App.module.less";
 export default {
   components: {
@@ -73,6 +75,7 @@ export default {
   },
   data() {
     return {
+      user,
       styles,
       activeIndex: "/",
       menuList
@@ -89,6 +92,11 @@ export default {
       // console.log("key", key);
       // console.log("keyPath", keyPath);
       this.activeIndex = keyPath;
+    },
+    /* 退出登录 */
+    logout() {
+      this.user.logout();
+      this.$router.replace("/login");
     }
   },
   created() {

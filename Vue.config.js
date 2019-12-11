@@ -6,7 +6,7 @@ module.exports = {
   chainWebpack: config => {
     config.resolve.alias.set("@", path.resolve("src"));
   },
-  productionSourceMap: false,
+  // productionSourceMap: false,
   css: {
     // vue-cli3, 暂时不要配置cssloader中的module为true即可, 他会把所有的认为是模块, 会出问题
     loaderOptions: {
